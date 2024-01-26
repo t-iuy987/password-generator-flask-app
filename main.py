@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, session
+from generate_password import generate_password
 
 app = Flask(__name__)
 
@@ -6,11 +7,14 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/generate_pswd", methods=["GET"])
+@app.route("/generate_pswd", methods=["GET", "POST"])
 def generate():
-    if request.method is "GET":
-        password = generate_password()
-        return redirect(url_for("home", password = password))
+    if request.method == "POST":
+        min_length = request.form.get("min_length")
+        spec_chars = request.form.get("spec_chars")
+        numbers = request.form.get("numbers")
+        password = generate_password(spec_chars, numbers, min_length)
+        return render_template("index.html", password = password)
 
     
 

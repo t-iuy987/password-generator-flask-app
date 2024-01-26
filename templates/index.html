@@ -1,7 +1,23 @@
-{% extends "generate_pswd.html" %}
-{% block title %} Password Generator Page {% endblock %}
-{% block content %}
-<form action="#" method="GET">
-    <input type="submit" value="Generate Password">
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+    <form action="/generate_pswd" method="POST">
+        Min Length: <input type="number" name="min_length" value=12 required> <br>
+        <input type="checkbox" name="spec_chars" checked> Include Special Characters<br>
+        <input type="checkbox" name="numbers" checked> Include Numbers<br>
+        <input type="submit" value="Generate Password">
+    </form>
+    
+
+    {% block data %} 
+    <p>{{password}}</p>
+    {% endblock %}
+
+</body>
+</html>

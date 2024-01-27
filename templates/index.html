@@ -16,15 +16,26 @@
         
         <label for="numbers"><input type="checkbox" id="numbers" name="numbers" checked class="mr-2"> Include Numbers</label><br>
 
-        <input type="submit" value="Generate Password" class="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer mt-4">
+        <input type="submit" value="Generate Password" class="py-3 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-gray-200 rounded-full border border-gray-200 hover:bg-gray-300 hover:text-black focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
     </form>
     
-    
+<div class="flex flex-col items-center p-2">
     {% block data %} 
-    <input class="mt-4 font-mono" value= "{{password}}">
-    <span class=""></span>
+
+    <p class="text-center">{{ password }}</p>
+    <button onclick="copyToClipboard('{{ password }}')" class="mt-2 px-4 py-2 bg-black text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring focus:border-blue-300">
+        Copy to Clipboard
+    </button>
+
     {% endblock %}
     
 </div>
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+    }
+</script>
 </body>
 </html>
+

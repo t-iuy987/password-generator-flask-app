@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <title>{% block title %} {% endblock %}</title>
 </head>
-<body>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<div class="bg-white p-6 rounded shadow-md max-w-md w-full">
 
-    <form action="/generate_pswd" method="POST">
-        Min Length: <input type="number" name="min_length" value=12 required> <br>
-        <input type="checkbox" name="spec_chars" checked> Include Special Characters<br>
-        <input type="checkbox" name="numbers" checked> Include Numbers<br>
-        <input type="submit" value="Generate Password">
+    <form action="/generate_pswd" method="POST" class="flex flex-col items-right">
+        <label for="min_length">Min Length:<input type="number" id="min_length" name="min_length" value="12" required class="mt-2 mb-4 p-2 border rounded"></label>
+
+        <label for="spec_chars"><input type="checkbox" id="spec_chars" name="spec_chars" checked class="mr-2"> Include Special Characters</label><br>
+        
+        <label for="numbers"><input type="checkbox" id="numbers" name="numbers" checked class="mr-2"> Include Numbers</label><br>
+
+        <input type="submit" value="Generate Password" class="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer mt-4">
     </form>
     
-
+    
     {% block data %} 
-    <p>{{password}}</p>
+    <input class="mt-4 font-mono" value= "{{password}}">
+    <span class=""></span>
     {% endblock %}
-
+    
+</div>
 </body>
 </html>
